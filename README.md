@@ -6,3 +6,6 @@ System will ask user to input a username and password. If the system does not re
 If the user inputs password incorrectly, the system will ask the user to re-try. There will be a re-try limiter of 3 times, before a 30 second cooldown will be initiated. 
 
 If both username and password are entered correctly, then the system will proceed sending a "Success, Welcome 'User'!" message. 
+
+
+Have made use of both Python and SQL skills (SQLite)
