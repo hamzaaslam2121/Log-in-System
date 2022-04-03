@@ -18,18 +18,18 @@ cursor1.execute("""CREATE TABLE IF NOT EXISTS users (
 def database_check(user_name, pass_word):   # function for checking whether entered "username" and "password" is already present in database
     cursor1.execute("""SELECT username, password 
             FROM users WHERE username=? AND password=?""",
-            (user_name, pass_word))
+            (user_name, pass_word,))
     
     result = cursor1.fetchone()
-    username_check = result[0]
+    user_check = result[0]
     
-
-    if username_check == True :
+    if user_check == None :
         return("Password incorrect, please re-try.")
-    elif result is None:
+    elif user_check == None:
         cursor1.execute("""INSERT INTO users (username, password) VALUES (?,?)""", (user_name, pass_word))
-        accountsdb.commit
+        accountsdb.commit()
         return("Welcome to my Log-In System, a new account has been created!")
+   
     else: 
         return ('Success. Welcome {}!'.format(user_name))
 
