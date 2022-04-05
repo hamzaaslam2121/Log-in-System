@@ -20,18 +20,24 @@ def database_check(user_name, pass_word):   # function for checking whether ente
             FROM users WHERE username=? AND password=?""",
             (user_name, pass_word,))
     
-    result = cursor1.fetchone()
-    user_check = result[0]
     
-    if user_check == None :
-        return("Password incorrect, please re-try.")
-    elif user_check == None:
+    try:
+        result = cursor1.fetchone()
+        
+
+        if result[1] == pass_word:
+            return ('Success. Welcome {}!'.format(user_name))
+    
+        else:
+            return 'Password incorrect. Please re-try'
+
+
+    except TypeError: 
         cursor1.execute("""INSERT INTO users (username, password) VALUES (?,?)""", (user_name, pass_word))
         accountsdb.commit()
-        return("Welcome to my Log-In System, a new account has been created!")
-   
-    else: 
-        return ('Success. Welcome {}!'.format(user_name))
+        return("A new account has been created!")
+
+  
 
 
 print(database_check(user_name, pass_word)) 
