@@ -16,16 +16,16 @@ cursor1.execute("""CREATE TABLE IF NOT EXISTS users (
 
 
 def database_check(user_name, pass_word):   # function for checking whether entered "username" and "password" is already present in database
-    cursor1.execute("""SELECT username, password 
-            FROM users WHERE username=? AND password=?""",
-            (user_name, pass_word,))
+    cursor1.execute("""SELECT password 
+            FROM users WHERE username=?""",
+            (user_name,))
     
     
     try:
-        result = cursor1.fetchone()
+        result = cursor1.fetchone()[0]
         
 
-        if result[1] == pass_word:
+        if result == pass_word:
             return ('Success. Welcome {}!'.format(user_name))
     
         else:
